@@ -2,6 +2,8 @@ package vue;
 
 import java.awt.Dimension;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -12,6 +14,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import controleur.Global;
+import modele.Mur;
 
 /**
  * frame de l'arène du jeu
@@ -32,7 +35,29 @@ public class Arene extends JFrame implements Global {
 	 * Zone d'affichage du t'chat
 	 */
 	private JTextArea txtChat ;
+	
+	private JPanel jpnMurs;
+	
 
+	/**
+	 * @return the jpnMurs
+	 */
+	public JPanel getJpnMurs() {
+		return jpnMurs;
+	}
+
+	/**
+	 * @param jpnMurs the jpnMurs to set
+	 */
+	public void setJpnMurs(JPanel jpnMurs) {
+		this.jpnMurs.add(jpnMurs);
+		this.jpnMurs.repaint();
+	}
+	
+	public void ajoutMurs(Object mur) {
+            jpnMurs.add((JLabel) mur);
+            jpnMurs.repaint();  // Rafraîchir le panel pour montrer le mur ajouté
+	}
 	/**
 	 * Create the frame.
 	 */
@@ -48,7 +73,13 @@ public class Arene extends JFrame implements Global {
 		contentPane = new JPanel();
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-	
+		   
+		jpnMurs = new JPanel();
+		jpnMurs.setBounds(0, 0, 800, 600);
+		jpnMurs.setOpaque(false);
+		jpnMurs.setLayout(null);		
+		contentPane.add(jpnMurs);
+			
 		txtSaisie = new JTextField();
 		txtSaisie.setBounds(0, 600, 800, 25);
 		contentPane.add(txtSaisie);
@@ -69,5 +100,7 @@ public class Arene extends JFrame implements Global {
 		contentPane.add(lblFond);
 		
 	}
+	
+	
 
 }

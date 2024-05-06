@@ -1,5 +1,7 @@
 package controleur;
 
+import javax.swing.JLabel;
+
 import modele.Jeu;
 import modele.JeuClient;
 import modele.JeuServeur;
@@ -61,6 +63,7 @@ public class Controle implements AsyncResponse, Global {
 			this.leJeu = new JeuServeur(this);
 			this.frmEntreeJeu.dispose();
 			this.frmArene = new Arene();
+			((JeuServeur)this.leJeu).constructionMurs();
 			this.frmArene.setVisible(true);
 		} else {
 			new ClientSocket(this, info, PORT);
@@ -78,6 +81,16 @@ public class Controle implements AsyncResponse, Global {
 		((JeuClient)this.leJeu).envoi(PSEUDO+STRINGSEPARE+pseudo+STRINGSEPARE+numPerso);
 	}
 
+	public void evenementJeuServeur(String ordre, Object info) {
+		switch(ordre) {
+		case ("ajout mur") :
+			frmArene.ajoutMurs(info);
+			break;
+		case ("ajout panel murs"):
+			this.leJeu.envoi((Connection)info, this.frmArene.getJpnMurs());
+		}
+		
+	}
 	/**
 	 * Envoi d'informations vers l'ordinateur distant
 	 * @param connection objet de connexion pour l'envoi vers l'ordinateur distant
@@ -110,5 +123,7 @@ public class Controle implements AsyncResponse, Global {
 		}
 		
 	}
+	
+	
 
 }

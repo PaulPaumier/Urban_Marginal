@@ -44,4 +44,10 @@ public class JeuClient extends Jeu {
 		super.envoi(this.connection, info);
 	}
 
+	@Override
+	public void constructionMurs() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

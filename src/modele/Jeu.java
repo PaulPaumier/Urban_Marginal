@@ -41,4 +41,5 @@ public abstract class Jeu {
 		this.controle.envoi(connection, info);
 	}
 	
+	public abstract void constructionMurs();
 }

@@ -17,6 +17,8 @@ public class JeuServeur extends Jeu implements Global {
 	 * Collection de murs
 	 */
 	private ArrayList<Mur> lesMurs = new ArrayList<Mur>() ;
+	
+
 	/**
 	 * Dictionnaire de joueurs indexé sur leur objet de connexion
 	 */
@@ -61,8 +63,13 @@ public class JeuServeur extends Jeu implements Global {
 
 	/**
 	 * Génération des murs
-	 */
+	 */ 
 	public void constructionMurs() {
+		for (int i = 0; i <= 20; i++)
+		{
+			this.lesMurs.add(new Mur());
+			this.controle.evenementJeuServeur("ajout mur", lesMurs.get(lesMurs.size()-1).getJLabel());
+		}
 	}
 	
 }
